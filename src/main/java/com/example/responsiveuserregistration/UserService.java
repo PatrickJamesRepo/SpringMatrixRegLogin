@@ -23,10 +23,10 @@ public class UserService implements UserDetailsService {
 
     public boolean registerUser(User user) {
         if (isUsernameTaken(user.getUsername())) {
-            return false; // User already exists
+            return false;
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user); // Save user
+        userRepository.save(user);
         return true;
     }
 

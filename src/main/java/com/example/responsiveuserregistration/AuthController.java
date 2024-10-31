@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import jakarta.validation.Valid;
+
 
 @Controller
 public class AuthController {
@@ -24,7 +24,7 @@ public class AuthController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("user", new User());
-        return "register"; // This should return the register.html
+        return "register";
     }
 
     @PostMapping("/api/auth/register")
@@ -48,12 +48,12 @@ public class AuthController {
 
     @GetMapping("/index")
     public String showIndexPage(Model model) {
-        return "index"; // This should return the index.html
+        return "index";
     }
 
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login"; // This should return the login.html
+        return "login";
     }
 
     @PostMapping("/api/auth/logout")

@@ -17,26 +17,26 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable() // Disable CSRF for simplicity, consider enabling for production
+                .csrf().disable()
                 .authorizeRequests()
                 .requestMatchers("/register", "/api/auth/register", "/login", "/favicon.ico")
-                .permitAll() // Allow unauthenticated access to specified endpoints
-                .requestMatchers("/index") // Protect the index page
-                .authenticated() // Require authentication for accessing /index
-                .anyRequest().authenticated() // Require authentication for all other requests
+                .permitAll()
+                .requestMatchers("/index")
+                .authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login") // Custom login page
-                .defaultSuccessUrl("/index", true) // Redirect to index after successful login
-                .failureUrl("/login?error=true") // Redirect back with error on failure
-                .permitAll() // Allow everyone to access the login page
+                .loginPage("/login")
+                .defaultSuccessUrl("/index", true)
+                .failureUrl("/login?error=true")
+                .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/api/auth/logout") // Specify the logout URL
-                .logoutSuccessUrl("/login?logout") // Redirect to login page after logout
-                .invalidateHttpSession(true) // Invalidate session on logout
-                .deleteCookies("JSESSIONID") // Remove the JSESSIONID cookie
-                .permitAll(); // Allow everyone to access logout
+                .logoutUrl("/api/auth/logout")
+                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll();
 
         return http.build();
     }
